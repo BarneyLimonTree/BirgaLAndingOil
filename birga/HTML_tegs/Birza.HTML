@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; Charset=UTF-8"> 
+	<title>Document</title>
+	<script type="text/javascript" src="jquery.js"></script>  
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=600">
+</head>
+<body>
+	<div class="container">
+			<div class="container__title">
+				<div class="container__title-main">
+					<p>Главная</p>
+				</div>
+				<div class="container__title-news">
+					<p>Новости</p>
+				</div>
+				<div class="container__title-course">
+					<p>Курс |</p>
+				</div>
+				<div class="container__title-USD">
+					<p>USD:xx.xx</p>
+				</div>
+				<div class="container__title-EUR">
+					<p>EUR:xx.xx</p>
+				</div>
+				<div class="container__title-BRENT">
+					<p>BRENT:xx.xx</p>
+				</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="content__image">
+					<img class="content-image" src="img/placeholder.com-logo3.png" alt="#">
+				</div>
+				<div class="content__page">
+					<div class="page_1">Page 1</div>
+					<div class="page_2">Page 2</div>
+					<div class="page_3">Page 3</div>
+				</div>
+				<div class="content__title-grafic">
+					<p>График нефтяных фьючерсов online </p>
+				</div>
+				<div class="content__grafic">
+					<div class = graf>			
+							<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+							<script defer="" crossorigin="anonymous" type="text/javascript" src="/neft/static/bundles/runtime.46db905adc21803b7b2c.js"></script>
+							<script defer="" crossorigin="anonymous" type="text/javascript" src="/neft/static/bundles/vendors.3c3febb842ba00387d74.js"></script>
+							<script defer="" crossorigin="anonymous" type="text/javascript" src="/neft/static/bundles/main_chart.16c5456e70482714afdd.js"></script>
+					
+							<script type="text/javascript" src="http://diamond-light.ru/neft/123.js"></script>
+					
+							<script type="text/javascript">
+							  new TradingView.widget({
+								"width": 420,
+								"height": 300,
+								"symbol": "TVC:UKOIL",
+								"symbol": "FX_IDC:USDBRO",
+								"interval": "3",
+								"timezone": "Europe/Moscow",
+								"theme": "White",
+								"style": "5",
+								"locale": "ru",
+								"toolbar_bg": "#FF00FF",
+								"save_image": false,
+								"whitelabel": true,	
+								"hideideas": true
+							  });
+							</script>
+						</div>
+						
+						<div class = tab>
+							<?php
+								$link = mysqli_connect("31.31.198.8", "u0616700_admin4", "adminadmin123", "u0616700_1234");
+								$sql = 'SELECT * FROM `neft_tabel` LIMIT 10';
+								$result = mysqli_query($link, $sql);
+
+								/* Проверка соединения */ 
+								if ( ! $link ) {
+									echo "Ошибка: Невозможно установить соединение с MySQL.";
+									echo "Код ошибки errno: ".mysqli_connect_errno( );
+									echo "Текст ошибки error: ".mysqli_connect_error( );
+								}
+
+								if($result){
+									$rows = mysqli_num_rows($result); // количество полученных строк
+									 
+									echo "<table>
+											<tr>
+												<th>Id</th>
+												<th>День</th>
+												<th>2020</th>
+												<th>2019</th>
+												<th>2018</th>
+												<th>2017</th>
+												<th>2016</th>
+												<th>2015</th>
+												<th>2014</th>
+												<th>2013</th>
+												<th>2012</th>
+												<th>2011</th>
+												<th>Шанс</th>
+											</tr>";
+									for ($i = 0 ; $i < $rows ; ++$i){
+										$row = mysqli_fetch_row($result);
+										echo "<tr>";
+											for ($j = 0 ; $j < 13 ; ++$j) echo "<td>$row[$j]</td>";
+										echo "</tr>";
+									}
+									echo "</table>";
+									 
+									// очищаем результат
+									mysqli_free_result($result);
+								}
+
+								/* закрываем соединение */
+								mysqli_close($link);
+							?>
+						</div>
+				</div>
+				<div class="content__table-1">
+					<p>Прогноз роста на завтра: XX%</p>
+					
+				</div>
+				<div class="content__table-2">
+					Прогноз роста на дату: XX%
+					<p><input type="date" name="date" value="rad1" /></p>
+				</div>
+				<div  class="content__text-warning">
+					Предепреждение о снятии ответственности по прогнозам
+					<br>
+					Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+				</div>
+			</div>
+			<script src="js/123.js"></script>
+	</div>
+</body>
+</html>
